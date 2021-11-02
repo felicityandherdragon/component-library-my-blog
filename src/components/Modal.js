@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { typeScale } from '../utils';
 import { PrimaryButton } from "./Buttons";
-import { Illustrations } from "../assets";
+import { Illustrations, CloseIcon } from "../assets";
 
 const ModalWrapper = styled.div`
   width: 395px;
@@ -48,9 +48,23 @@ const ModalImg = styled.img`
   width: 70%;
 `
 
+const CloseModalButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+`
+
 export const ContentModal = () => {
   return (
     <ModalWrapper>
+      <CloseModalButton aria-label="Close modal" onClick={() => console.log("You closed the modal!")}>
+        <CloseIcon />
+      </CloseModalButton>
       <ModalImg src={Illustrations.ModalOne} alt="illustration for card" aria-hidden="true" />
       <ModalHeader>This is the heading of the modal</ModalHeader>
       <ModalText>
