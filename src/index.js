@@ -6,13 +6,13 @@ import {
   SecondaryButton,
   TertiaryButton,
 } from './components/Buttons';
-import { ContentModal } from './components';
+import { ContentModal, LargeContentModal } from './components';
 import { GlobalStyle, defaultTheme, darkTheme } from './utils';
 
 const App = () => {
   const [useDarkTheme, setUseDarkTheme] = useState(false);
-
-  console.log(useDarkTheme);
+  const [useLargeModal, setUseLargeModal] = useState(false);
+  const [useSmallModal, setUseSmallModal] = useState(false);
 
   return (
     <ThemeProvider theme={useDarkTheme ? darkTheme : defaultTheme}>
@@ -20,19 +20,20 @@ const App = () => {
         style={{
           background: useDarkTheme ? darkTheme.bgColor : defaultTheme.bgColor,
           width: '100vw',
-          height: '100vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-around',
         }}
       >
-        <div style={{
-          width: '50vw',
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}>
+        <div
+          style={{
+            width: '40vw',
+            height: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
             Toggle dark theme
           </button>
@@ -66,7 +67,36 @@ const App = () => {
           <SecondaryButton disabled>Secondary button disabled</SecondaryButton>
           <TertiaryButton>Tertiary button default</TertiaryButton>
         </div>
-        <ContentModal />
+        <div
+          style={{ width: '60vw', display: 'flex', flexDirection: 'column' }}
+        >
+          <div style={{ display: 'flex', flexDirection: 'row', position: 'absolute', top:'10px' }}>
+            <button
+              onClick={() => setUseSmallModal(!useSmallModal)}
+              style={{ marginBottom: '10px' }}
+            >
+              Small card
+            </button>
+            <button
+              onClick={() => setUseLargeModal(!useLargeModal)}
+              style={{ marginBottom: '10px' }}
+            >
+              Large card
+            </button>
+          </div>
+          {useSmallModal && (
+            <ContentModal
+              useSmallModal={useSmallModal}
+              setUseSmallModal={setUseSmallModal}
+            />
+          )}
+          {useLargeModal && (
+            <LargeContentModal
+              useLargeModal={useLargeModal}
+              setUseLargeModal={setUseLargeModal}
+            />
+          )}
+        </div>
         <GlobalStyle />
       </div>
     </ThemeProvider>
