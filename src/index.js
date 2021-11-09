@@ -37,7 +37,7 @@ const App = () => {
           <button onClick={() => setUseDarkTheme(!useDarkTheme)}>
             Toggle dark theme
           </button>
-          <PrimaryButton>Primary button default</PrimaryButton>
+          <PrimaryButton label='primary button default' />
           <PrimaryButton modifiers={['error', 'primaryButtonError']}>
             Primary button error
           </PrimaryButton>
